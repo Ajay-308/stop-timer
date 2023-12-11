@@ -13,8 +13,15 @@ const Timer = () => {
 
 
     const handleInputChange = (event) => {
+        const newtime = event.target.value
         if (!timerRunning) {
-            setTimeInput(event.target.value);
+            setTimeInput(newtime);
+        }
+        else {
+            setTimeInput(newtime)
+            setTimerRunning(false)
+            setTimeLeft(null)
+            setInitialTime(null)
         }
     };
 
@@ -62,6 +69,7 @@ const Timer = () => {
         }
     }, [timeLeft, timerRunning]);
 
+    // for reset
     useEffect(() => {
         if (!timerRunning && initialTime !== null) {
             setTimeLeft(initialTime)
